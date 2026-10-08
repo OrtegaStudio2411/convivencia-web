@@ -5,15 +5,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Información sobre convivencia ciudadana y digital: normas, valores y recomendaciones para convivir mejor en la comunidad y en internet.">
+  <meta name="description" content="Información sobre convivencia ciudadana y digital: normas, valores, recomendaciones y una autoevaluación.">
   <title>Convivencia ciudadana y digital</title>
-  <!-- Vinculación del CSS (styles.css en la misma carpeta) -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ===== ENCABEZADO ===== -->
-  <header class="header" id="header">
+  <!-- NUEVO: barra de progreso de lectura (la controla script.js, sección 2) -->
+  <div class="progress" id="progress" role="presentation"></div>
+
+  <header class="header">
     <div class="container nav-wrap">
       <a href="#inicio" class="logo">Convivencia</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
@@ -22,17 +23,17 @@
       <nav class="nav" id="nav">
         <ul>
           <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#ciudadana">Convivencia ciudadana</a></li>
-          <li><a href="#digital">Convivencia digital</a></li>
+          <li><a href="#ciudadana">Ciudadana</a></li>
+          <li><a href="#digital">Digital</a></li>
           <li><a href="#valores">Valores</a></li>
           <li><a href="#recomendaciones">Recomendaciones</a></li>
+          <li><a href="#autoevaluacion">Autoevaluación</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- ===== INICIO ===== -->
     <section class="hero" id="inicio">
       <div class="container">
         <h1>Convivencia ciudadana y digital</h1>
@@ -41,9 +42,8 @@
       </div>
     </section>
 
-    <!-- ===== SECCIÓN 1: CONVIVENCIA CIUDADANA ===== -->
     <section class="section" id="ciudadana">
-      <div class="container two-col">
+      <div class="container two-col reveal">
         <div>
           <h2>¿Qué es la convivencia ciudadana?</h2>
           <p class="lead">Es el conjunto de normas, actitudes y acuerdos que permiten a las personas vivir juntas de manera pacífica, respetando a los demás y cuidando los espacios que se comparten.</p>
@@ -63,9 +63,8 @@
       </div>
     </section>
 
-    <!-- ===== SECCIÓN 2: CONVIVENCIA DIGITAL ===== -->
     <section class="section alt" id="digital">
-      <div class="container two-col reverse">
+      <div class="container two-col reverse reveal">
         <aside class="info-box">
           <h3>Ciudadanía digital</h3>
           <ul>
@@ -85,59 +84,65 @@
       </div>
     </section>
 
-    <!-- ===== SECCIÓN 3: VALORES ===== -->
     <section class="section" id="valores">
-      <div class="container">
+      <div class="container reveal">
         <h2>Valores básicos para convivir</h2>
         <p class="lead narrow">Una buena convivencia se apoya en valores compartidos y en el equilibrio entre los derechos que tenemos y los deberes que debemos cumplir.</p>
         <div class="grid-3">
-          <article class="box">
-            <h3>Respeto</h3>
-            <p>Reconocer la dignidad de cada persona, sin importar su edad, origen, creencias, apariencia o forma de pensar. Respetar es escuchar sin juzgar y no estar de acuerdo sin ofender.</p>
-          </article>
-          <article class="box">
-            <h3>Empatía</h3>
-            <p>Ponerse en el lugar del otro para comprender lo que siente. La empatía ayuda a prevenir el acoso, tanto presencial como digital, y a actuar con comprensión.</p>
-          </article>
-          <article class="box">
-            <h3>Responsabilidad</h3>
-            <p>Asumir las consecuencias de lo que hacemos y cumplir con nuestros deberes. Ser responsable también es reparar el daño causado y comprometerse a no repetirlo.</p>
-          </article>
+          <article class="box"><h3>Respeto</h3><p>Reconocer la dignidad de cada persona, sin importar su edad, origen, creencias, apariencia o forma de pensar. Respetar es escuchar sin juzgar y no estar de acuerdo sin ofender.</p></article>
+          <article class="box"><h3>Empatía</h3><p>Ponerse en el lugar del otro para comprender lo que siente. La empatía ayuda a prevenir el acoso, tanto presencial como digital, y a actuar con comprensión.</p></article>
+          <article class="box"><h3>Responsabilidad</h3><p>Asumir las consecuencias de lo que hacemos y cumplir con nuestros deberes. Ser responsable también es reparar el daño causado y comprometerse a no repetirlo.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- ===== TARJETAS: RECOMENDACIONES ===== -->
+    <!-- ===== RECOMENDACIONES CON PESTAÑAS (filtro) ===== -->
     <section class="section alt" id="recomendaciones">
-      <div class="container">
+      <div class="container reveal">
         <h2>Recomendaciones prácticas</h2>
-        <p class="lead narrow">Acciones sencillas que podemos aplicar todos los días, dentro y fuera de la red.</p>
-        <div class="cards">
-          <article class="card"><span class="num">01</span><h3>Dialogar con respeto</h3><p>Usar un tono amable y explicar las ideas con claridad. Escuchar hasta el final antes de responder.</p></article>
-          <article class="card"><span class="num">02</span><h3>Cuidar los espacios públicos</h3><p>No dañar parques, transporte ni escuelas, y depositar la basura en los lugares indicados.</p></article>
-          <article class="card"><span class="num">03</span><h3>Proteger la privacidad</h3><p>Usar contraseñas seguras y no compartir datos personales con desconocidos.</p></article>
-          <article class="card"><span class="num">04</span><h3>Verificar la información</h3><p>Consultar fuentes confiables antes de reenviar noticias o cadenas de mensajes.</p></article>
-          <article class="card"><span class="num">05</span><h3>No participar en el ciberacoso</h3><p>No sumarse a las burlas, apoyar a la víctima, guardar evidencias y avisar a un adulto.</p></article>
-          <article class="card"><span class="num">06</span><h3>Descansar de las pantallas</h3><p>Reservar tiempo para la familia, el deporte y el descanso sin dispositivos.</p></article>
+        <p class="lead narrow">Acciones sencillas que podemos aplicar todos los días. Elige un ámbito para filtrar las recomendaciones.</p>
+
+        <!-- NUEVO: pestañas (la lógica está en script.js, sección 3) -->
+        <div class="tabs" role="tablist" aria-label="Filtrar recomendaciones">
+          <button class="tab active" role="tab" aria-selected="true" data-filter="todas">Todas</button>
+          <button class="tab" role="tab" aria-selected="false" data-filter="comunidad">En la comunidad</button>
+          <button class="tab" role="tab" aria-selected="false" data-filter="internet">En internet</button>
         </div>
+
+        <div class="cards" id="cards">
+          <article class="card" data-cat="comunidad internet"><span class="num">01</span><h3>Dialogar con respeto</h3><p>Usar un tono amable y explicar las ideas con claridad. Escuchar hasta el final antes de responder.</p></article>
+          <article class="card" data-cat="comunidad"><span class="num">02</span><h3>Cuidar los espacios públicos</h3><p>No dañar parques, transporte ni escuelas, y depositar la basura en los lugares indicados.</p></article>
+          <article class="card" data-cat="internet"><span class="num">03</span><h3>Proteger la privacidad</h3><p>Usar contraseñas seguras y no compartir datos personales con desconocidos.</p></article>
+          <article class="card" data-cat="internet"><span class="num">04</span><h3>Verificar la información</h3><p>Consultar fuentes confiables antes de reenviar noticias o cadenas de mensajes.</p></article>
+          <article class="card" data-cat="internet"><span class="num">05</span><h3>No participar en el ciberacoso</h3><p>No sumarse a las burlas, apoyar a la víctima, guardar evidencias y avisar a un adulto.</p></article>
+          <article class="card" data-cat="comunidad internet"><span class="num">06</span><h3>Descansar de las pantallas</h3><p>Reservar tiempo para la familia, el deporte y el descanso sin dispositivos.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NUEVO: AUTOEVALUACIÓN (quiz) ===== -->
+    <section class="section" id="autoevaluacion">
+      <div class="container reveal">
+        <h2>Autoevaluación</h2>
+        <p class="lead narrow">Tres preguntas breves para comprobar lo que se explicó en esta página.</p>
+        <!-- script.js (sección 4) dibuja las preguntas dentro de este contenedor -->
+        <div class="quiz" id="quiz" aria-live="polite"></div>
       </div>
     </section>
   </main>
 
-  <!-- ===== PIE DE PÁGINA ===== -->
   <footer class="footer">
     <div class="container footer-wrap">
-      <p>© <span id="year">2025</span> Convivencia ciudadana y digital. Proyecto escolar. Todos los derechos reservados.</p>
+      <p>© <span id="year">2025</span> Convivencia ciudadana y digital.</p>
       <ul>
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#digital">Convivencia digital</a></li>
-        <li><a href="#recomendaciones">Recomendaciones</a></li>
+        <li><a href="#autoevaluacion">Autoevaluación</a></li>
         <li><a href="https://www.unicef.org/" target="_blank" rel="noopener">UNICEF</a></li>
       </ul>
     </div>
   </footer>
 
-  <!-- Vinculación del JS (script.js en la misma carpeta) -->
   <script src="script.js"></script>
 </body>
 </html>

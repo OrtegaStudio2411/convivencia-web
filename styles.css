@@ -1,15 +1,17 @@
 /* ARCHIVO 2: styles.css
    Guárdalo en la MISMA carpeta que index.html (convivencia-web/styles.css) */
 
-/* ===== Variables ===== */
 :root {
   --navy: #1e293b;
-  --blue: #334e7a;
   --bg: #ffffff;
   --bg-alt: #f8f9fa;
   --text: #2d3748;
   --muted: #5f6b7a;
   --border: #dde1e6;
+  --ok: #2f6f4f;      /* verde sobrio (respuesta correcta) */
+  --ok-bg: #eef6f1;
+  --bad: #9b3b3b;     /* rojo sobrio (respuesta incorrecta) */
+  --bad-bg: #f9eeee;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,17 +19,20 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
 body { font-family: "Segoe UI", Arial, sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
+button { font: inherit; }
 .container { width: min(1050px, 90%); margin: 0 auto; }
+
+/* ===== NUEVO: barra de progreso de lectura ===== */
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: var(--navy); transform: scaleX(0); transform-origin: left; z-index: 200; }
 
 /* ===== Encabezado ===== */
 .header { position: fixed; top: 0; width: 100%; z-index: 100; background: #fff; border-bottom: 1px solid var(--border); }
 .nav-wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
 .logo { font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); }
-.nav ul { display: flex; gap: 1.6rem; }
-.nav a { font-size: .93rem; color: var(--muted); padding: .3rem 0; border-bottom: 2px solid transparent; }
+.nav ul { display: flex; gap: 1.4rem; }
+.nav a { font-size: .92rem; color: var(--muted); padding: .3rem 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
 .nav a:hover, .nav a.active { color: var(--navy); border-color: var(--navy); }
 
-/* Botón hamburguesa */
 .menu-toggle { display: none; background: none; border: 0; cursor: pointer; width: 28px; height: 22px; position: relative; }
 .menu-toggle span { position: absolute; left: 0; width: 100%; height: 2px; background: var(--navy); transition: .25s; }
 .menu-toggle span:nth-child(1) { top: 0; }
@@ -41,8 +46,10 @@ ul { list-style: none; }
 .hero { background: var(--navy); color: #fff; padding: 160px 0 90px; }
 .hero h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.25; max-width: 700px; margin-bottom: 1rem; }
 .hero-sub { max-width: 600px; font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; }
-.btn { display: inline-block; background: #fff; color: var(--navy); font-weight: 600; padding: .7rem 1.5rem; border-radius: 4px; border: 1px solid #fff; transition: background .2s, color .2s; }
+.btn { display: inline-block; background: #fff; color: var(--navy); font-weight: 600; padding: .7rem 1.5rem; border-radius: 4px; border: 1px solid #fff; cursor: pointer; transition: background .2s, color .2s; }
 .btn:hover { background: transparent; color: #fff; }
+.btn.dark { background: var(--navy); color: #fff; border-color: var(--navy); }
+.btn.dark:hover { background: #fff; color: var(--navy); }
 
 /* ===== Secciones ===== */
 .section { padding: 4.5rem 0; }
@@ -55,7 +62,6 @@ p { margin-bottom: 1rem; }
 
 .two-col { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
 .two-col.reverse { grid-template-columns: 1fr 1.5fr; }
-
 .info-box { background: var(--bg-alt); border: 1px solid var(--border); border-left: 4px solid var(--navy); padding: 1.5rem; border-radius: 4px; }
 .section.alt .info-box { background: #fff; }
 .info-box ul { list-style: disc; padding-left: 1.2rem; }
@@ -65,12 +71,43 @@ p { margin-bottom: 1rem; }
 .box { padding: 1.5rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; }
 .box p { margin: 0; color: var(--muted); }
 
+/* ===== NUEVO: pestañas ===== */
+.tabs { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: 1.5rem; border-bottom: 1px solid var(--border); }
+.tab { background: none; border: 0; border-bottom: 2px solid transparent; padding: .6rem 1rem; margin-bottom: -1px; color: var(--muted); cursor: pointer; transition: color .2s, border-color .2s; }
+.tab:hover { color: var(--navy); }
+.tab.active { color: var(--navy); font-weight: 600; border-color: var(--navy); }
+.tab:focus-visible, .option:focus-visible, .btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
 /* ===== Tarjetas ===== */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-.card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; transition: border-color .2s; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; transition: border-color .2s; animation: aparecer .35s ease both; }
 .card:hover { border-color: var(--navy); }
+.card[hidden] { display: none; }
 .card .num { display: block; font-family: Georgia, serif; font-size: 1.3rem; color: var(--muted); margin-bottom: .4rem; }
 .card p { margin: 0; color: var(--muted); }
+@keyframes aparecer { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ===== NUEVO: quiz ===== */
+.quiz { margin-top: 2rem; max-width: 700px; background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 1.8rem; }
+.quiz-meta { display: flex; justify-content: space-between; font-size: .85rem; color: var(--muted); margin-bottom: .8rem; }
+.quiz-bar { height: 3px; background: var(--border); margin-bottom: 1.2rem; }
+.quiz-bar div { height: 100%; background: var(--navy); transition: width .3s; }
+.quiz h3 { font-size: 1.15rem; margin-bottom: 1rem; }
+.options { display: grid; gap: .6rem; }
+.option { text-align: left; background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: .8rem 1rem; color: var(--text); cursor: pointer; transition: border-color .2s, background .2s; }
+.option:hover:not(:disabled) { border-color: var(--navy); background: var(--bg-alt); }
+.option:disabled { cursor: default; }
+.option.correct { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); font-weight: 600; }
+.option.wrong { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+.feedback { margin-top: 1rem; padding: .8rem 1rem; border-left: 4px solid var(--navy); background: var(--bg-alt); font-size: .95rem; animation: aparecer .3s ease both; }
+.feedback.ok { border-color: var(--ok); }
+.feedback.no { border-color: var(--bad); }
+.quiz .btn { margin-top: 1.2rem; }
+.score { font-family: Georgia, serif; font-size: 2rem; color: var(--navy); margin-bottom: .5rem; }
+
+/* ===== Aparición al hacer scroll (solo si hay JavaScript) ===== */
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.js .reveal.visible { opacity: 1; transform: none; }
 
 /* ===== Pie de página ===== */
 .footer { background: var(--navy); color: #cbd5e1; padding: 1.8rem 0; font-size: .9rem; }
@@ -80,15 +117,24 @@ p { margin-bottom: 1rem; }
 .footer a:hover { color: #fff; text-decoration: underline; }
 
 /* ===== Responsive ===== */
+@media (max-width: 960px) { .nav ul { gap: 1rem; } .nav a { font-size: .85rem; } }
 @media (max-width: 860px) {
   .menu-toggle { display: block; }
   .nav { position: absolute; top: 60px; left: 0; width: 100%; background: #fff; border-bottom: 1px solid var(--border); max-height: 0; overflow: hidden; transition: max-height .3s; }
-  .nav.open { max-height: 400px; }
+  .nav.open { max-height: 420px; }
   .nav ul { flex-direction: column; gap: 0; padding: .5rem 0; }
-  .nav a { display: block; padding: .8rem 5%; border: 0; }
+  .nav a { display: block; padding: .8rem 5%; border: 0; font-size: .95rem; }
   .two-col, .two-col.reverse { grid-template-columns: 1fr; gap: 2rem; }
   .two-col.reverse .info-box { order: 2; }
   .hero { padding: 120px 0 60px; }
   .section { padding: 3rem 0; }
+  .quiz { padding: 1.2rem; }
   .footer-wrap { flex-direction: column; text-align: center; }
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
 }
